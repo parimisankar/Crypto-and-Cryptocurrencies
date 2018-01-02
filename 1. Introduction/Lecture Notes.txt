@@ -1,0 +1,33 @@
+Hash Function - a mathematical function with the following three properties:
+? Its input can be any string of any size.
+? It produces a fixed size output. (any output size as long as it is sufficiently large, we use 256 bits).
+? It is efficiently computable. Given a input string, you can figure out what the output of the hash function is in a reasonable amount of time.
+
+For Hash Function to be cryptographically secure, it has to have following Security Properties
+? Collision-resistance: A hash function H is said to be collision resistant if it is infeasible to find two values, x and y, such that x ? y, yet H(x) = H(y). Application: message digest
+? Hiding: A hash function H is hiding if: when a secret value r is chosen from a probability distribution that has high min-entropy, then given H(r ? x) it is infeasible to find x. Application: Commitment
+? Puzzle Friendliness: A hash function H is said to be puzzle-friendly if for every possible n-bit output value y, if k is chosen from a distribution with high min-entropy, then it is infeasible to find x such that H(k ? x) = y in time significantly less than 2^n. Application: Puzzle Search
+
+Hash Pointers and Data Structures: A hash pointer is a pointer to where data is stored together with a cryptographic hash of the value of that data at some fixed point in time. 
+Blockchain Application: Tamper Evident Log, 
+Merkle Tree Aplication: Proof of membership
+Sorted Merkle Tree Application: Proof of non-membership
+
+Hash pointers can be used in any acyclic data structures but not in cyclic data structures.
+
+Digital Signatures: A signature that can be made by the owner also and can be verified by anyone. The signature has to unforgeable.
+
+Digital Signature Scheme:
+A digital signature scheme consists of the following three algorithms:
+? (sk, pk) := generateKeys( keysize ) The generateKeys method takes a key size and generates a key pair. The secret key sk is kept privately and used to sign messages. pk is the public verification key that you give to everybody. Anyone with this key can verify your signature.
+? sig := sign( sk , message ) The sign method takes a message, msg , and a secret key, sk , as input and outputs a signature for the msg under sk
+? isValid := verify( pk , message , sig ) The verify method takes a message, a signature, and a public key as input. It returns a boolean value, isValid , that will be true if sig is a valid signature for message under public key pk , and false otherwise.
+
+We require that the following two properties hold:
+? Valid signatures must verify
+	? verify ( pk , message , sign ( sk , message )) == true
+? Signatures are existentially unforgeable.
+
+Public Key == Identity
+
+Double-Spending Attack: Main design challenge for cryptocurrency
